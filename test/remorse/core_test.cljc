@@ -16,13 +16,13 @@
     (is (= (string->morse "0") "-----"))
     (is (= (string->morse "1") ".----"))
     (is (= (string->morse "7") "--..."))
-    (is (= (string->morse "?") "?"))
+    (is (= (string->morse "$") "$"))
     (is (= (string->morse " ") "")))
   (testing "Multiple characters"
     (is (= (string->morse "abc") ".-_-..._-.-."))
     (is (= (string->morse "hello world") "...._._.-.._.-.._---__.--_---_.-._.-.._-.."))
     (is (= (string->morse "  ") "_"))
-    (is (= (string->morse "hi!") "...._.._!"))
+    (is (= (string->morse "hi$") "...._.._$"))
     (is (= (string->morse "he-lo") "...._._-....-_.-.._---"))))
 
 (deftest morse-to-string
@@ -34,7 +34,7 @@
     (is (= "1" (morse->string ".----")))
     (is (= "7" (morse->string "--...")))
     (is (= "" (morse->string "__")))
-    (is (= "?" (morse->string "?"))))
+    (is (= "$" (morse->string "$"))))
   (testing "Multiple characters"
     (is (= "abc" (morse->string ".-_-..._-.-.")))
     (is (= "a b" (morse->string ".-__-...")))
