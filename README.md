@@ -7,7 +7,7 @@ Keyword to morse code conversion
 This can be included in `deps.edn` with the following entry in the `:deps` map:
 
 ```clojure
-com.github.quoll/remorse {:git/tag "0.0.1" :git/sha "3b0cce9"}
+com.github.quoll/remorse {:git/tag "0.0.2" :git/sha "4ff7d73"}
 ```
 
 ### Keywords
