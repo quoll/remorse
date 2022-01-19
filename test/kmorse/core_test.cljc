@@ -1,0 +1,63 @@
+(ns ^{:doc "Tests for kmorse.core"
+      :author "Paula Gearon"}
+    kmorse.core-test
+    (:require [clojure.test :refer [deftest is testing]]
+              [kmorse.core :refer [string->morse morse->string
+                                   keyword->morse morse->keyword]]))
+
+(deftest string-to-morse
+  (testing "Single characters"
+    (is (= (string->morse "a") ".-"))
+    (is (= (string->morse "b") "-..."))
+    (is (= (string->morse "c") "-.-."))
+    (is (= (string->morse "A") ".-"))
+    (is (= (string->morse "B") "-..."))
+    (is (= (string->morse "C") "-.-."))
+    (is (= (string->morse "0") "-----"))
+    (is (= (string->morse "1") ".----"))
+    (is (= (string->morse "7") "--..."))
+    (is (= (string->morse "?") "?"))
+    (is (= (string->morse " ") "")))
+  (testing "Multiple characters"
+    (is (= (string->morse "abc") ".-_-..._-.-."))
+    (is (= (string->morse "hello world") "...._._.-.._.-.._---__.--_---_.-._.-.._-.."))
+    (is (= (string->morse "  ") "_"))
+    (is (= (string->morse "hi!") "...._.._!"))
+    (is (= (string->morse "he-lo") "...._._-....-_.-.._---"))))
+
+(deftest morse-to-string
+  (testing "Multiple characters"
+    (is (= "a" (morse->string ".-")))
+    (is (= "b" (morse->string "-...")))
+    (is (= "c" (morse->string "-.-.")))
+    (is (= "0" (morse->string "-----")))
+    (is (= "1" (morse->string ".----")))
+    (is (= "7" (morse->string "--...")))
+    (is (= "" (morse->string "__")))
+    (is (= "?" (morse->string "?"))))
+  (testing "Multiple characters"
+    (is (= "abc" (morse->string ".-_-..._-.-.")))
+    (is (= "a b" (morse->string ".-__-...")))
+    (is (= "hello world" (morse->string "...._._.-.._.-.._---__.--_---_.-._.-.._-..")))
+    (is (= "hi!" (morse->string "...._.._!")))
+    (is (= "he-lo" (morse->string "...._._-....-_.-.._---")))))
+
+(deftest keyword-to-morse
+  (testing "Simple keywords"
+    (is (= :.- (keyword->morse :a)))
+    (is (= :...._._.-.._.-.._--- (keyword->morse :hello)))
+    (is (= :...._._-....-_.-.._--- (keyword->morse :he-lo))))
+  (testing "Namespaced keywords"
+    (is (= :my/.- (keyword->morse :my/a)))
+    (is (= :my/...._._.-.._.-.._--- (keyword->morse :my/hello)))
+    (is (= :my/...._._-....-_.-.._--- (keyword->morse :my/he-lo)))))
+
+(deftest morse-to-keyword
+  (testing "Simple keywords"
+    (is (= (morse->keyword :.-) :a))
+    (is (= (morse->keyword :...._._.-.._.-.._---) :hello))
+    (is (= (morse->keyword :...._._-....-_.-.._---) :he-lo)))
+  (testing "Namespaced keywords"
+    (is (= (morse->keyword :my/.-) :my/a))
+    (is (= (morse->keyword :my/...._._.-.._.-.._---) :my/hello))
+    (is (= (morse->keyword :my/...._._-....-_.-.._---) :my/he-lo))))
