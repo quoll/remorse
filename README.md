@@ -3,6 +3,13 @@ Keyword to morse code conversion
 
 ## Usage
 
+### Dependencies
+This can be included in `deps.edn` with the following entry in the `:deps` map:
+
+```clojure
+com.github.quoll/kmorse {:git/tag "0.0.1" :git/sha "3b0cce9"}
+```
+
 ### Keywords
 Keywords can be converted to and from morse code.
 
