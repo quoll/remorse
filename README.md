@@ -1,4 +1,4 @@
-# kmorse
+# remorse
 Keyword to morse code conversion
 
 ## Usage
@@ -7,26 +7,26 @@ Keyword to morse code conversion
 This can be included in `deps.edn` with the following entry in the `:deps` map:
 
 ```clojure
-com.github.quoll/kmorse {:git/tag "0.0.1" :git/sha "3b0cce9"}
+com.github.quoll/remorse {:git/tag "0.0.1" :git/sha "3b0cce9"}
 ```
 
 ### Keywords
 Keywords can be converted to and from morse code.
 
 ```clojure
-=> (require '[kmorse.core :as km])
+=> (require '[remorse.core :as rm])
 nil
 
-=> (km/keyword->morse :hello)
+=> (rm/keyword->morse :hello)
 :...._._.-.._.-.._---
 
-=> (km/keyword->morse :my/hello-world)
+=> (rm/keyword->morse :my/hello-world)
 :my/...._._.-.._.-.._---_-....-_.--_---_.-._.-.._-..
 
-=> (km/morse->keyword :...._._.-.._.-.._---)
+=> (rm/morse->keyword :...._._.-.._.-.._---)
 :hello
 
-=> (km/morse->keyword :my/...._._.-.._.-.._---_-....-_.--_---_.-._.-.._-..)
+=> (rm/morse->keyword :my/...._._.-.._.-.._---_-....-_.--_---_.-._.-.._-..)
 :my/hello-world
 ```
 
@@ -34,13 +34,13 @@ nil
 Strings can also be converted. Leading and trailing spaces will be dropped.
 
 ```clojure
-=> (km/morse->string "...._._.-.._.-.._---")
+=> (rm/morse->string "...._._.-.._.-.._---")
 "hello"
 
-=> (km/string->morse "hello world")
+=> (rm/string->morse "hello world")
 "...._._.-.._.-.._---__.--_---_.-._.-.._-.."
 
-=> (km/morse->string "...._._.-.._.-.._---__.--_---_.-._.-.._-..")
+=> (rm/morse->string "...._._.-.._.-.._---__.--_---_.-._.-.._-..")
 "hello world"
 ```
 

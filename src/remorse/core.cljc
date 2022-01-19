@@ -1,6 +1,6 @@
 (ns ^{:doc "Provides function for converting strings to and from morse keywords"
       :author "Paula Gearon"}
-    kmorse.core
+    remorse.core
     (:require [clojure.string :as s]))
 
 (def az->morse

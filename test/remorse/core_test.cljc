@@ -1,9 +1,9 @@
-(ns ^{:doc "Tests for kmorse.core"
+(ns ^{:doc "Tests for remorse.core"
       :author "Paula Gearon"}
-    kmorse.core-test
+    remorse.core-test
     (:require [clojure.test :refer [deftest is testing]]
-              [kmorse.core :refer [string->morse morse->string
-                                   keyword->morse morse->keyword]]))
+              [remorse.core :refer [string->morse morse->string
+                                    keyword->morse morse->keyword]]))
 
 (deftest string-to-morse
   (testing "Single characters"
