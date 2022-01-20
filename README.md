@@ -1,5 +1,5 @@
 # remorse
-Keyword to morse code conversion
+Clojure to morse code conversion
 
 ## Usage
 
@@ -7,7 +7,7 @@ Keyword to morse code conversion
 This can be included in `deps.edn` with the following entry in the `:deps` map:
 
 ```clojure
-com.github.quoll/remorse {:git/tag "0.0.3" :git/sha "fc18c46"}
+com.github.quoll/remorse {:git/tag "0.1.0" :git/sha "1485240"}
 ```
 
 ### Keywords
@@ -43,6 +43,20 @@ Strings can also be converted. Leading and trailing spaces will be dropped.
 => (rm/morse->string "...._._.-.._.-.._---__.--_---_.-._.-.._-..")
 "hello world"
 ```
+
+### Symbols
+Symbols can be converted to morse, but they are unable to use the `.` character. Instead, they use Unicode character 0x00b7: `·`
+
+```clojure
+=> (rm/symbol->morse 'hello)
+····_·_·-··_·-··_---
+
+=> (rm/morse->symbol '····_·_·-··_·-··_---)
+hello
+```
+
+## Development
+This project dogfoods itself. You probably don't want to look at the code.
 
 # License
 Copyright © 2022 Paula Gearon
