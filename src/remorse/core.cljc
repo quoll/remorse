@@ -3,7 +3,7 @@
     remorse.core
     (:require [clojure.string :as s]))
 
-(def az->morse
+(def c->morse
   {\a ".-"
    \b "-..."
    \c "-.-."
@@ -58,28 +58,28 @@
    \) "-.--.-"
    \space ""})
 
-(def morse->az (into {"" \space} (map (fn [[k v]] [v k]) az->morse)))
+(def morse->c (into {} (map (fn [[k v]] [v k]) c->morse)))
 
 (defn string->morse
   [s]
   (->> (s/lower-case s)
-       (map #(az->morse % %))
+       (map #(c->morse % %))
        (s/join "_")))
 
 (defn morse->string
   [s]
   (->> (s/split s #"_")
-       (map #(morse->az % %))
+       (map #(morse->c % %))
        (apply str)))
 
-(defn convert-keyword
-  [f k]
-  (keyword (namespace k) (f (name k))))
+(defn convert
+  [t f v]
+  (t (namespace v) (f (name v))))
 
 (defn keyword->morse
   [k]
-  (convert-keyword string->morse k))
+  (convert keyword string->morse k))
 
 (defn morse->keyword
   [k]
-  (convert-keyword morse->string k))
+  (convert keyword morse->string k))
