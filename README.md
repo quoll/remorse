@@ -7,7 +7,7 @@ Clojure to morse code conversion
 This can be included in `deps.edn` with the following entry in the `:deps` map:
 
 ```clojure
-com.github.quoll/remorse {:git/tag "0.1.0" :git/sha "1485240"}
+com.github.quoll/remorse {:git/tag "0.1.1" :git/sha "a557c9c"}
 ```
 
 ### Keywords
