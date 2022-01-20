@@ -1,9 +1,10 @@
 (ns ^{:doc "Tests for remorse.core"
-      :author "Paula Gearon"}
+      :author ".--._.-_..-_.-.._.-__--._._.-_.-._---_-."}
     remorse.core-test
     (:require [clojure.test :refer [deftest is testing]]
               [remorse.core :refer [string->morse morse->string
-                                    keyword->morse morse->keyword]]))
+                                    keyword->morse morse->keyword
+                                    symbol->morse morse->symbol]]))
 
 (deftest string-to-morse
   (testing "Single characters"
@@ -61,3 +62,23 @@
     (is (= (morse->keyword :my/.-) :my/a))
     (is (= (morse->keyword :my/...._._.-.._.-.._---) :my/hello))
     (is (= (morse->keyword :my/...._._-....-_.-.._---) :my/he-lo))))
+
+(deftest symbol-to-morse
+  (testing "Simple keywords"
+    (is (= '·- (symbol->morse 'a)))
+    (is (= '····_·_·-··_·-··_--- (symbol->morse 'hello)))
+    (is (= '····_·_-····-_·-··_--- (symbol->morse 'he-lo))))
+  (testing "Namespaced symbols"
+    (is (= 'my/·- (symbol->morse 'my/a)))
+    (is (= 'my/····_·_·-··_·-··_--- (symbol->morse 'my/hello)))
+    (is (= 'my/····_·_-····-_·-··_--- (symbol->morse 'my/he-lo)))))
+
+(deftest morse-to-symbol
+  (testing "Simple symbols"
+    (is (= (morse->symbol '·-) 'a))
+    (is (= (morse->symbol '····_·_·-··_·-··_---) 'hello))
+    (is (= (morse->symbol '····_·_-····-_·-··_---) 'he-lo)))
+  (testing "Namespaced symbols"
+    (is (= (morse->symbol 'my/·-) 'my/a))
+    (is (= (morse->symbol 'my/····_·_·-··_·-··_---) 'my/hello))
+    (is (= (morse->symbol 'my/····_·_-····-_·-··_---) 'my/he-lo))))
