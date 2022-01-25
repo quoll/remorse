@@ -65,20 +65,20 @@
 
 (deftest symbol-to-morse
   (testing "Simple keywords"
-    (is (= '·- (symbol->morse 'a)))
-    (is (= '····_·_·-··_·-··_--- (symbol->morse 'hello)))
-    (is (= '····_·_-····-_·-··_--- (symbol->morse 'he-lo))))
+    (is (= '_·- (symbol->morse 'a)))
+    (is (= '_····_·_·-··_·-··_--- (symbol->morse 'hello)))
+    (is (= '_····_·_-····-_·-··_--- (symbol->morse 'he-lo))))
   (testing "Namespaced symbols"
-    (is (= 'my/·- (symbol->morse 'my/a)))
-    (is (= 'my/····_·_·-··_·-··_--- (symbol->morse 'my/hello)))
-    (is (= 'my/····_·_-····-_·-··_--- (symbol->morse 'my/he-lo)))))
+    (is (= 'my/_·- (symbol->morse 'my/a)))
+    (is (= 'my/_····_·_·-··_·-··_--- (symbol->morse 'my/hello)))
+    (is (= 'my/_····_·_-····-_·-··_--- (symbol->morse 'my/he-lo)))))
 
 (deftest morse-to-symbol
   (testing "Simple symbols"
-    (is (= (morse->symbol '·-) 'a))
-    (is (= (morse->symbol '····_·_·-··_·-··_---) 'hello))
-    (is (= (morse->symbol '····_·_-····-_·-··_---) 'he-lo)))
+    (is (= (morse->symbol '_·-) 'a))
+    (is (= (morse->symbol '_····_·_·-··_·-··_---) 'hello))
+    (is (= (morse->symbol '_····_·_-····-_·-··_---) 'he-lo)))
   (testing "Namespaced symbols"
-    (is (= (morse->symbol 'my/·-) 'my/a))
-    (is (= (morse->symbol 'my/····_·_·-··_·-··_---) 'my/hello))
-    (is (= (morse->symbol 'my/····_·_-····-_·-··_---) 'my/he-lo))))
+    (is (= (morse->symbol 'my/_·-) 'my/a))
+    (is (= (morse->symbol 'my/_····_·_·-··_·-··_---) 'my/hello))
+    (is (= (morse->symbol 'my/_····_·_-····-_·-··_---) 'my/he-lo))))
