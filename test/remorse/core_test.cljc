@@ -1,5 +1,5 @@
 (ns ^{:doc "Tests for remorse.core"
-      :author ".--._.-_..-_.-.._.-__--._._.-_.-._---_-."}
+      :author "Paula Gearon"}
     remorse.core-test
     (:require [clojure.test :refer [deftest is testing]]
               [remorse.core :refer [string->morse morse->string
