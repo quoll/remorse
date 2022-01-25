@@ -1,5 +1,5 @@
 # remorse
-Clojure to morse code conversion
+Clojure and ClojureScript to morse code conversion
 
 ## Usage
 
@@ -7,7 +7,7 @@ Clojure to morse code conversion
 This can be included in `deps.edn` with the following entry in the `:deps` map:
 
 ```clojure
-com.github.quoll/remorse {:git/tag "0.1.3" :git/sha "41c09fc"}
+com.github.quoll/remorse {:git/tag "0.2.0" :git/sha "5c58cfb"}
 ```
 
 ### Keywords
@@ -49,11 +49,12 @@ Symbols can be converted to morse, but they are unable to use the `.` character.
 
 ```clojure
 => (rm/symbol->morse 'hello)
-····_·_·-··_·-··_---
+_····_·_·-··_·-··_---
 
-=> (rm/morse->symbol '····_·_·-··_·-··_---)
+=> (rm/morse->symbol '_····_·_·-··_·-··_---)
 hello
 ```
+Note that JavaScript (and hence ClojureScript) cannot accept a symbol that starts with `·` so any symbols that start this way will be prepended with a separator character (an underscore).
 
 ## Development
 This project dogfoods itself. You probably don't want to look at the code.
